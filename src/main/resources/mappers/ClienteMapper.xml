@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="edu.cientifica.ISISGAV.mappers.ClienteMapper">
+	
+	<resultMap id="clienteResultMap" type="edu.cientifica.ISISGAV.model.Cliente">
+	
+		<id column="id_cliente" property="id_Cliente"/>
+		<result column="cod_cli" property="cod_cli"/>
+		<result column="dir_cli" property="dir_cli"/>
+		<result column="ruc_cli" property="ruc_cli"/>
+		<result column="correo_cli" property="correo_cli"/>
+		<result column="tel_cli" property="tel_cli"/>	
+	
+	</resultMap>
+	
+	<select id="listarCliente" resultMap="clienteResultMap">	
+	SELECT * FROM db_isisgav.cliente;	
+	</select>
+
+</mapper>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="edu.cientifica.ISISGAV.mappers.VentaMapper">
+	
+	<resultMap id="ventaResultMap" type="edu.cientifica.ISISGAV.model.Venta">
+		
+		<id column="id_venta" property="id_Venta"/>
+		<result column="cod_ven" property="cod_ven"/>
+		<result column="id_comprobante_pago" property="id_comprobante_pago"/>
+		<result column="comprobante_pago" property="desc_comprobante"/>
+		<result column="fecha_venta" property="fecha_venta"/>
+		<result column="sub_total" property="sub_total"/>
+		<result column="igv" property="igv"/>
+		<result column="importe_venta" property="importe_venta"/>
+		
+		<association column="id_empleado" property="empleado" javaType="edu.cientifica.ISISGAV.model.Empleado" 
+			resultMap="edu.cientifica.ISISGAV.mappers.EmpleadoMapper.empleadoResultMap"/>
+		<association column="id_cliente" property="cliente" javaType="edu.cientifica.ISISGAV.model.Cliente" 
+			resultMap="edu.cientifica.ISISGAV.mappers.ClienteMapper.clienteResultMap"/>
+		<association column="id_pago" property="forma_Pago" javaType="edu.cientifica.ISISGAV.model.Forma_Pago" 
+			resultMap="edu.cientifica.ISISGAV.mappers.Forma_PagoMapper.forma_pagoResultMap"/>
+			
+	</resultMap>	
+	
+	<insert id="insertarVenta" parameterType="edu.cientifica.ISISGAV.model.Venta">	
+	INSERT INTO VENTA (ID_EMPLEADO, ID_CLIENTE, ID_PAGO, FECHA_VENTA, ID_COMPROBANTE_PAGO)
+	VALUES (#{empleado.id_Empleado}, #{cliente.id_Cliente}, #{forma_Pago.id_Pago}, curdate(), #{id_comprobante_pago});	
+	</insert>
+
+
+	<select id="GetLastIDVenta" resultType="int">
+	SELECT MAX(ID_VENTA) +1 FROM db_isisgav.venta;	
+	</select>
+	
+	<select id="listarVentas" resultMap="ventaResultMap">
+	SELECT id_venta, cod_ven, empleado.cod_emp, cliente.cod_cli, forma_pago.desc_pago, 
+	if(id_comprobante_pago = 1, 'Boleta', 'Factura') AS comprobante_pago, fecha_venta, sub_total, igv, importe_venta
+	FROM db_isisgav.venta
+	INNER JOIN empleado ON empleado.id_empleado = venta.id_empleado
+	INNER JOIN cliente ON cliente.id_cliente = venta.id_cliente
+	INNER JOIN forma_pago ON forma_pago.id_pago = venta.id_pago
+	ORDER BY id_venta ASC;
+	</select>
+	
+</mapper>

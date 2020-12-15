@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<title>Categoria Lista</title>
+</head>
+<body>
+	<h1 th:text="${titulo}">Categoria Lista</h1>
+	<table>
+		<thead>
+			<tr>
+				<th>id Cat</th>
+				<th>Cod Categoria</th>
+				<th>desc</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:if="${categorias.empty}">
+				<td>No Results</td>
+			</tr>
+			<tr th:each="unit: ${categorias}">
+				<td>
+				<span th:text="${unit.id_Categoria}"> ID</span>
+				</td>
+				
+				<td>
+				<span th:text="${unit.cod_cat}">cod</span>
+				</td>
+
+				<td>
+				<span th:text="${unit.desc_cat}"> Desc</span>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+</body>
+</html>

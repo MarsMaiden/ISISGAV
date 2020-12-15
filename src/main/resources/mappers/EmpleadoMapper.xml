@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="edu.cientifica.ISISGAV.mappers.EmpleadoMapper">
+	
+	<resultMap id="empleadoResultMap" type="edu.cientifica.ISISGAV.model.Empleado">
+		
+		<id column="id_empleado" property="id_Empleado"/>
+		<result column="cod_emp" property="cod_emp"/>
+		<result column="dni_emp" property="dni_emp"/>
+		<result column="nom_emp" property="nom_emp"/>
+		<result column="ape_emp" property="ape_emp"/>
+		<result column="tel_emp" property="tel_emp"/>
+		<result column="correo_emp" property="correo_emp"/>
+		<result column="dir_emp" property="dir_emp"/>
+		
+	</resultMap>
+
+	<select id="listarEmpleado" resultMap="empleadoResultMap">
+	SELECT * FROM db_isisgav.empleado;
+	</select>
+	
+</mapper>

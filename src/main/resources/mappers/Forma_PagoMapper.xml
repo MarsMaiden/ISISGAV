@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="edu.cientifica.ISISGAV.mappers.Forma_PagoMapper">
+
+	<resultMap id="forma_pagoResultMap" type="edu.cientifica.ISISGAV.model.Forma_Pago">
+	
+		<id column="id_pago" property="id_Pago"/>
+		<result column="desc_pago" property="desc_pago"/>
+		
+	</resultMap>
+	
+	<select id="listarFormaPago" resultMap="forma_pagoResultMap">
+	SELECT * FROM db_isisgav.forma_pago;
+	</select>
+	
+</mapper>

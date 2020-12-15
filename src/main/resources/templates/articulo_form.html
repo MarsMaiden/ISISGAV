@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Ingresar Artículo</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no " />
+	<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css}"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+
+	<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+	th:href="@{https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css}"
+	integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+	crossorigin="anonymous">
+
+	<link th:href="@{/css/css_proyecto.css}" href="../static/css/css_proyecto.css" rel="stylesheet" type="text/css"/>
+
+	<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"
+	th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js}"></script>
+</head>
+<body>
+	<nav class="navbar navbar-light bg-light">
+		<img src="../static/img/Dare Instruments.png" th:src="@{/img/Dare Instruments.png}" width="175" height="68" class="d-inline-block align-top" alt="">
+		<a class="navbar-brand" href="#">Navbar</a>
+	</nav>
+
+	<aside class="">
+		<a class="cuadrado_cliente" th:href="@{#}">
+			<img src="../static/img/Frame_cliente.png" th:src="@{/img/Frame_cliente.png}" alt=""/>
+		</a>
+		<a class="cuadrado_venta" th:href="@{/venta/list/}">
+			<img src="../static/img/Frame_Venta.png" th:src="@{/img/Frame_Venta.png}" alt=""/>
+		</a>
+		<a class="cuadrado_entradas" th:href="@{#}">
+			<img src="../static/img/Frame_Entradas.png" th:src="@{/img/Frame_Entradas.png}" alt=""/>
+		</a>
+		<a class="cuadrado_productos" th:href="@{/articulo/list/}">
+			<img src="../static/img/Frame_Productos.png" th:src="@{/img/Frame_Productos.png}" alt=""/>
+		</a>
+		<a class="cuadrado_proveedor" th:href="@{#}">
+			<img src="../static/img/Frame_Proveedor.png" th:src="@{/img/Frame_Proveedor.png}" alt=""/>
+		</a>
+		<a class="cuadrado_administrador" th:href="@{#}">
+			<img src="../static/img/Frame_Administrador.png" th:src="@{/img/Frame_Administrador.png}" alt=""/>
+		</a>
+	</aside>
+	
+	<main class="text-center py-5">
+		
+		<div class="contenedor"> 
+			<div class="d-flex justify-content-center">
+				<form action="" th:action="@{/articulo/registrar}" method="post"
+				th:object="${articulos}">
+
+				<div class="form-group">
+					<label for="idArticulo">ID</label> <input type="number"
+					id="idArticulo" name="idArticulo" th:field="*{id_Articulo}"
+					readonly="readonly">
+				</div>
+
+				<div class="form-group">
+					<label for="nom_art">Nombre</label>
+					<input type="text" id="nom_art"	name="nom_art"
+					th:field="*{nom_art}" placeholder="Nombre">
+				</div>
+
+				<div class="form-group">
+					<label for="marca_art">Marca</label> <input type="text"
+					id="marca_art" name="marca_art" th:field="*{marca_art}" placeholder="Marca">
+				</div>
+
+				<div class="form-group">
+					<label for="desc_art">Descripcion</label> <input type="text"
+					id="desc_art" name="desc_art" th:field="*{desc_art}" placeholder="Descripción">
+				</div>
+
+				<div class="form-control form-control-lg">
+					<label for="Categoria">Categoria</label> <select id="Categoria"
+					name="Categoria" th:field="*{categoria.id_Categoria}">
+					<option th:value="0" th:text="--Seleccionar"></option>
+					<option th:each="categoria: ${listarCategoria}"
+					th:value="${categoria.id_Categoria}"
+					th:text="${categoria.desc_cat}"></option>
+				</select>
+			</div>
+
+			<div class="">
+				<label for="precio_venta">Precio Venta</label> <input type="number"
+				id="precio_venta" name="precio_venta" th:field="*{precio_venta}" placeholder="Precio Venta">
+			</div>
+
+
+			<div class="btn btn-primary">
+				<input type="submit" value="grabar" id="btnGrabar">
+			</div>
+		</form>
+	</div>
+</div>
+
+
+</main>
+
+</body>
+
+<script src="https://code.jquery.com/jquery-3.5.1.js" th:src="@{https://code.jquery.com/jquery-3.5.1.js}"
+integrity="sha384-/LjQZzcpTzaYn7qWqRIWYC5l8FWEZ2bIHIz0D73Uzba4pShEcdLdZyZkI4Kv676E"
+crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/table-to-json/1.0.0/jquery.tabletojson.min.js"
+th:src="@{https://cdnjs.cloudflare.com/ajax/libs/table-to-json/1.0.0/jquery.tabletojson.min.js}"
+integrity="sha512-kq3madMG50UJqYNMbXKO3loD85v8Mtv6kFqj7U9MMpLXHGNO87v0I26anynXAuERIM08MHNof1SDaasfw9hXjg=="
+crossorigin="anonymous"></script>
+
+<script src="../static/js/functions.js" th:src="@{/js/functions.js}"></script>
+</html>

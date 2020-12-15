@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="edu.cientifica.ISISGAV.mappers.Detalle_CompraMapper">
+	
+	<resultMap id="detalle_compraResultMap" type="edu.cientifica.ISISGAV.model.Detalle_Compra">
+	
+		<id column="id_detalle_compra" property="id_Detalle_Compra"/>
+		<result column="cant_compra" property="cant_compra"/>
+		<result column="precio_compra" property="precio_compra"/>
+		
+		<association column="id_compra" property="compra" javaType="edu.cientifica.ISISGAV.model.Compra"
+			resultMap="edu.cientifica.ISISGAV.mappers.CompraMapper.compraResultMap"></association>
+		<association column="id_articulo" property="articulo" javaType="edu.cientifica.ISISGAV.model.Articulo"
+			resultMap="edu.cientifica.ISISGAV.mappers.ArticuloMapper.articuloResultMap"></association>
+				
+	</resultMap>	
+
+
+</mapper>

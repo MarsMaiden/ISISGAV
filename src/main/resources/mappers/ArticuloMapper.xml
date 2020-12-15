@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="edu.cientifica.ISISGAV.mappers.ArticuloMapper">
+
+	<resultMap id="articuloResultMap" type="edu.cientifica.ISISGAV.model.Articulo">
+
+		<id column="id_articulo" property="id_Articulo" />
+		<result column="cod_art" property="cod_art" />
+		<result column="nom_art" property="nom_art" />
+		<result column="marca_art" property="marca_art" />
+		<result column="desc_art" property="desc_art" />
+		<result column="precio_venta" property="precio_venta" />
+		<result column="stock_actual" property="stock_actual" />
+
+		<association column="id_categoria" property="categoria" javaType="edu.cientifica.ISISGAV.model.Categoria" resultMap="edu.cientifica.ISISGAV.mappers.CategoriaMapper.categoriaResultMap" />
+
+	</resultMap>
+
+	<select id="listarArticulo" resultMap="articuloResultMap">
+	SELECT articulo.cod_art, articulo.nom_art, articulo.marca_art, articulo.desc_art,categoria.desc_cat,articulo.precio_venta
+	FROM articulo
+	INNER JOIN categoria ON articulo.id_categoria = categoria.id_categoria;
+	</select>
+
+	<select id="GetNewIDArticulo" resultType="int">
+	SELECT MAX(ID_ARTICULO) + 1 FROM ARTICULO;
+	</select>
+
+	<select id="listarByCODART" resultMap="articuloResultMap" parameterType="string">	
+	SELECT articulo.id_articulo, ARTICULO.COD_ART, ARTICULO.NOM_ART, (SELECT STOCK_ACTUAL FROM KARDEX
+	INNER JOIN ARTICULO ON KARDEX.ID_ARTICULO = ARTICULO.ID_ARTICULO WHERE COD_ART = #{cod_art} ORDER BY ID_KARDEX DESC LIMIT 1) AS stock_actual,
+	ARTICULO.PRECIO_VENTA FROM ARTICULO WHERE COD_ART = #{cod_art};
+	</select>
+
+	<select id="listarFiltroArticulo" resultMap="articuloResultMap" parameterType="string">
+	SELECT articulo.cod_art, articulo.nom_art, articulo.marca_art, articulo.desc_art,categoria.desc_cat,articulo.precio_venta 
+	FROM ARTICULO  INNER JOIN categoria ON articulo.id_categoria = categoria.id_categoria WHERE MATCH (nom_art, marca_art)
+	AGAINST( '%' #{nom_art} '%' IN BOOLEAN MODE);
+	</select>
+
+	<insert id="insertarArticulo" parameterType="edu.cientifica.ISISGAV.model.Articulo">
+	INSERT INTO ARTICULO (NOM_ART, MARCA_ART, DESC_ART, ID_CATEGORIA, PRECIO_VENTA)
+	VALUES (#{nom_art}, #{marca_art}, #{desc_art}, #{categoria.id_Categoria},#{precio_venta});
+	</insert>
+
+</mapper>

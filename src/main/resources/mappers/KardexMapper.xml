@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="edu.cientifica.ISISGAV.mappers.KardexMapper">
+
+	<resultMap id="kardexResultMap" type="edu.cientifica.ISISGAV.model.Kardex">
+		
+		<id column="id_kardex" property="id_Kardex"/>
+		<result column="fecha_kardex" property="fecha_kardex"/>
+		<result column="stock_actual" property="stock_actual"/>
+		<result column="valor_stock_actual" property="valor_stock_actual"/>
+		
+		<association column="id_articulo" property="articulo" javaType="edu.cientifica.ISISGAV.model.Articulo" 
+			resultMap="edu.cientifica.ISISGAV.mappers.ArticuloMapper.articuloResultMap"></association>
+		<association column="id_compra" property="compra" javaType="edu.cientifica.ISISGAV.model.Compra" 
+			resultMap="edu.cientifica.ISISGAV.mappers.CompraMapper.compraResultMap"></association>
+		<association column="id_venta" property="venta" javaType="edu.cientifica.ISISGAV.model.Venta" 
+			resultMap="edu.cientifica.ISISGAV.mappers.VentaMapper.ventaResultMap"></association>
+		
+	</resultMap>
+	
+	<select id="getStockActual" resultMap="kardexResultMap" parameterType="string">
+		SELECT STOCK_ACTUAL FROM KARDEX INNER JOIN ARTICULO ON KARDEX.ID_ARTICULO = ARTICULO.ID_ARTICULO 
+		WHERE COD_ART = #{cod_art} ORDER BY ID_KARDEX DESC LIMIT 1	
+	</select>
+	
+</mapper>

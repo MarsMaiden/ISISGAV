@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Ingresar Venta</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+  th:href="@{https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css}"
+  integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
+  crossorigin="anonymous">
+
+  <link th:href="@{/css/css_proyecto.css}" href="../static/css/css_proyecto.css" rel="stylesheet" type="text/css"/>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+</head>
+
+<body>
+
+  <nav class="navbar navbar-light bg-light">
+    <img src="../static/img/Dare Instruments.png" th:src="@{/img/Dare Instruments.png}" width="175" height="68" class="d-inline-block align-top" alt="">
+    <a class="navbar-brand" href="#">Navbar</a>
+  </nav>
+
+  <aside class="">
+    <a class="cuadrado_cliente" th:href="@{#}">
+      <img src="../static/img/Frame_cliente.png" th:src="@{/img/Frame_cliente.png}" alt=""/>
+    </a>
+    <a class="cuadrado_venta" th:href="@{/venta/list/}">
+      <img src="../static/img/Frame_Venta.png" th:src="@{/img/Frame_Venta.png}" alt=""/>
+    </a>
+    <a class="cuadrado_entradas" th:href="@{#}">
+      <img src="../static/img/Frame_Entradas.png" th:src="@{/img/Frame_Entradas.png}" alt=""/>
+    </a>
+    <a class="cuadrado_productos" th:href="@{/articulo/list/}">
+      <img src="../static/img/Frame_Productos.png" th:src="@{/img/Frame_Productos.png}" alt=""/>
+    </a>
+    <a class="cuadrado_proveedor" th:href="@{#}">
+      <img src="../static/img/Frame_Proveedor.png" th:src="@{/img/Frame_Proveedor.png}" alt=""/>
+    </a>
+    <a class="cuadrado_administrador" th:href="@{#}">
+      <img src="../static/img/Frame_Administrador.png" th:src="@{/img/Frame_Administrador.png}" alt=""/>
+    </a>
+  </aside>
+
+  <main>
+    <div class="container-fluid">
+      <div class="contenedor">
+
+        <div class="form-group">
+          <form class="" th:action="@{/venta/registrar}" method="post" th:object="${ventas}">
+
+            <div class="label_empleado">
+              <label for="cod_emp">Codigo Empleado</label>
+            </div>
+
+            <div class="cuadrado_empleado">
+              <select class="selectpicker" name="cod_emp" th:field="*{empleado.id_Empleado}">
+                <option value="0" th:text="--Seleccionar--"></option>
+                <option th:each="empleado: ${listarEmpleado}"
+                th:value="${empleado.id_Empleado}"
+                th:text="${empleado.cod_emp}"></option>
+              </select>
+            </div>
+
+            <div class="label_cliente">
+              <label for="cod_cli">Codigo Cliente</label>
+            </div>
+
+            <div class="cuadrado_cliente_venta">
+              <select class="selectpicker" name="cod_cli" th:field="*{cliente.id_Cliente}">
+                <option value="0" th:text="--Seleccionar--"></option>
+                <option th:each="cliente: ${listarCliente}"
+                th:value="${cliente.id_Cliente}"
+                th:text="${cliente.cod_cli}"></option>
+              </select>
+            </div>
+
+            <div class="label_forma_pago">
+              <label for="desc_pago">Forma de Pago</label>
+            </div>
+
+            <div class="cuadrado_forma_pago">
+              <select class="selectpicker" name="desc_pago" th:field="*{forma_Pago.id_Pago}">
+                <option value="0" th:text="--Seleccionar--"></option>
+                <option th:each="pago: ${listarFormapago}"
+                th:value="${pago.id_Pago}"
+                th:text="${pago.desc_pago}"></option>
+              </select>
+            </div>
+
+
+            <div class="label_comprobante_pago">
+              <label for="comprobante_pago">Comprobante Pago</label>
+            </div>
+
+            <div class="cuadrado_comprobante_pago">
+              <select class="selectpicker" name="comprobante_pago" th:field="*{id_comprobante_pago}">
+                <option value="1" th:text="Boleta"></option>
+                <option value="2" th:text="Factura"></option>
+              </select>
+            </div>
+
+            <div class="imagen_detalle">
+              <input type="submit" class="btn btn-primary" name="Grabar" id="btnGrabar" >
+            </div>
+            
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+</head>
+
+<body>
+	<div th:fragment="buscar_cod_art"
+		class="results-block row justify-content-center">
+		<table class="table" id="table_resultsbycodart">
+			<thead class="thead-dark">
+				<tr>
+					<th>Id</th>
+					<th>Código</th>
+					<th>Nombre</th>
+					<th>Stock</th>					
+					<th>Precio</th>
+				</tr>
+			</thead>
+			<tbody id="tbody_resultsbycodart">
+				<tr th:if="${listarArticulo.empty}">
+					<td>No Results</td>
+				</tr>
+				<tr th:each="unit: ${listarArticulo}">
+					<td class="id_art" th:text="${unit.id_Articulo}"></td>
+					<td class="cod_art" th:text="${unit.cod_art}"></td>
+					<td class="nom_art" th:text="${unit.nom_art}"></td>
+					<td class="stock" th:text="${unit.stock_actual}"></td>
+					<td class="precio_venta" th:text="${unit.precio_venta}"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>
