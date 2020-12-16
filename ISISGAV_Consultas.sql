@@ -1,7 +1,8 @@
 -- Consulta Productos
 SELECT articulo.cod_art, articulo.nom_art, articulo.marca_art, articulo.desc_art,categoria.desc_cat,articulo.precio_venta
 FROM articulo
-INNER JOIN categoria ON articulo.id_categoria = categoria.id_categoria;
+INNER JOIN categoria ON articulo.id_categoria = categoria.id_categoria
+ORDER BY COD_ART ASC;
 
 /*SELECT articulo.cod_art, articulo.nom_art, articulo.marca_art, articulo.desc_art,categoria.desc_cat,articulo.precio_venta, (SELECT STOCK_ACTUAL FROM KARDEX
 INNER JOIN ARTICULO ON KARDEX.ID_ARTICULO = ARTICULO.ID_ARTICULO ORDER BY ID_KARDEX DESC LIMIT 1) AS stock_actual
@@ -68,3 +69,22 @@ INNER JOIN venta ON venta.id_venta = detalle_venta.id_venta
 INNER JOIN articulo ON articulo.id_articulo = detalle_venta.id_articulo
 WHERE detalle_venta.id_venta = 1;
 
+-- Find by User
+
+SELECT usuario.id_usuario, usuario.usuario, usuario.pass, tipo_usuario.desc_user FROM db_isisgav.usuario
+INNER JOIN usuario_roles ON usuario_roles.id_usuario = usuario.id_usuario
+INNER JOIN tipo_usuario ON tipo_usuario.id_tipouser = usuario_roles.id_tipouser
+ WHERE usuario.usuario = "Amaguiña";
+
+
+SELECT usuario.usuario, usuario.pass FROM db_isisgav.usuario WHERE usuario.usuario = "Amaguiña";
+
+-- AMaguiña	73112941AM
+-- ERazuri	81479842ER
+-- HAndia	74631428HA
+-- RCedano	48115736RC
+
+
+
+
+UPDATE usuario SET pass = "$2a$04$GpFe9s9Edexm.i/JZhJm2.7SjC4LULdwgmcdo9FXPdadFUAWgx3ni" where id_usuario = "4";

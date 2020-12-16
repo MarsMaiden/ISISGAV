@@ -17,14 +17,14 @@ public class UsuarioController {
 	@Autowired
 	UsuarioService usuarioService;
 	
-	@PostMapping("/validar")
+	/*@PostMapping("/validar")
 	public String validarUsuario(Model model, @RequestParam (name="username") String username,
 			@RequestParam (name="pass") String pass) {
-		Usuario usuario=new Usuario (null,username, pass,null);
+		Usuario usuario=new Usuario (username, pass);
 		
 		if(usuarioService.validarUsuario(usuario)) {
 			return "redirect:/venta/form";
 		}
 		return "index";		
-	}
+	}*/
 }

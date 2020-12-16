@@ -20,7 +20,7 @@
 	<select id="listarArticulo" resultMap="articuloResultMap">
 	SELECT articulo.cod_art, articulo.nom_art, articulo.marca_art, articulo.desc_art,categoria.desc_cat,articulo.precio_venta
 	FROM articulo
-	INNER JOIN categoria ON articulo.id_categoria = categoria.id_categoria;
+	INNER JOIN categoria ON articulo.id_categoria = categoria.id_categoria ORDER BY COD_ART ASC;
 	</select>
 
 	<select id="GetNewIDArticulo" resultType="int">

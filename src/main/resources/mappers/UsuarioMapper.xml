@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="edu.cientifica.ISISGAV.mappers.UsuarioMapper">
+
+	<resultMap id="usuarioResultMap" type="edu.cientifica.ISISGAV.model.Usuario">
+	
+		<id column="id_usuario" property="id_Usuario"/>
+		<result column="usuario" property="usuario" />
+		<result column="pass" property="pass"/>		
+		
+		<association column="id_empleado" property="empleado" javaType="edu.cientifica.ISISGAV.model.Empleado"
+			resultMap="edu.cientifica.ISISGAV.mappers.EmpleadoMapper.empleadoResultMap"></association>
+		<collection property="tipo_Usuario" javaType="edu.cientifica.ISISGAV.model.Tipo_Usuario">
+			<id column="id_tipouser" property="id_tipouser"/>
+			<result column="desc_user" property="desc_user" />
+		</collection>
+	
+	</resultMap>
+	
+	<select id="findbyUser" resultMap="usuarioResultMap" parameterType="string">
+		SELECT usuario.id_usuario, usuario.usuario, usuario.pass, tipo_usuario.desc_user FROM db_isisgav.usuario
+		INNER JOIN usuario_roles ON usuario_roles.id_usuario = usuario.id_usuario
+		INNER JOIN tipo_usuario ON tipo_usuario.id_tipouser = usuario_roles.id_tipouser
+ 		WHERE usuario.usuario = #{usuario};
+	</select>
+
+</mapper>

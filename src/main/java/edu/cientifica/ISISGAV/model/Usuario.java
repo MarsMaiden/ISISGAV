@@ -4,16 +4,33 @@ import java.util.List;
 
 public class Usuario {
 
+	private int id_Usuario;
 	private Empleado empleado;
 	private String usuario;
 	private String pass;
 	private List<Tipo_Usuario> tipo_Usuario;
 
-	public Usuario(Empleado empleado, String usuario, String pass, List<Tipo_Usuario> tipo_Usuario) {
+	public int getId_Usuario() {
+		return id_Usuario;
+	}
+
+	public void setId_Usuario(int id_Usuario) {
+		this.id_Usuario = id_Usuario;
+	}
+
+	public Usuario(int id_Usuario, Empleado empleado, String usuario, String pass, List<Tipo_Usuario> tipo_Usuario) {
 		super();
+		this.id_Usuario = id_Usuario;
+		this.empleado = empleado;
 		this.usuario = usuario;
 		this.pass = pass;
 		this.tipo_Usuario = tipo_Usuario;
+	}
+	
+	public Usuario(String usuario, String pass) {
+		super();
+		this.usuario = usuario;
+		this.pass = pass;
 	}
 
 	public Usuario() {
