@@ -26,20 +26,13 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-		Usuario user = usuarioMapper.findbyUser(username);
+		Usuario usuario = usuarioMapper.findbyUser(username);
 		
-		if (user == null) {
-			throw new UsernameNotFoundException("Usuario no encontrado");
-		}
+		List<GrantedAuthority> roles = new ArrayList<>();
+		roles.add(new SimpleGrantedAuthority("ADMIN"));
 		
-		List grantList = new ArrayList<>();
-		for (Tipo_Usuario rol: user.getTipo_Usuario()) {
-			GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(rol.getDesc_user());
-			grantList.add(grantedAuthority);
-		}		
-
-		UserDetails usuario = (UserDetails) new User(user.getUsuario(), user.getPass(), grantList);
-
-		return usuario;
+		UserDetails userDet = new User(usuario.getUsuario(), usuario.getPass(), roles); 
+		
+		return userDet;
 	}
 }

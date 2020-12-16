@@ -19,10 +19,7 @@
 	</resultMap>
 	
 	<select id="findbyUser" resultMap="usuarioResultMap" parameterType="string">
-		SELECT usuario.id_usuario, usuario.usuario, usuario.pass, tipo_usuario.desc_user FROM db_isisgav.usuario
-		INNER JOIN usuario_roles ON usuario_roles.id_usuario = usuario.id_usuario
-		INNER JOIN tipo_usuario ON tipo_usuario.id_tipouser = usuario_roles.id_tipouser
- 		WHERE usuario.usuario = #{usuario};
+		SELECT usuario.usuario, usuario.pass FROM db_isisgav.usuario WHERE usuario.usuario = #{usuario};
 	</select>
 
 </mapper>

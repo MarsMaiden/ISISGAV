@@ -25,10 +25,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.authorizeRequests()
 			.antMatchers(resources).permitAll()
 			.antMatchers("/","index").permitAll()	
-			.antMatchers("/","index","/venta/**","/articulo/**").permitAll()	
-			//.antMatchers("/venta/**", "/articulo/**").hasAnyRole("Vendedor","Administrador")
+			//.antMatchers("/","index","/venta/**","/articulo/**").permitAll()				
 				.anyRequest().authenticated()
 				.and()
+				//.httpBasic();
 			.formLogin()
 				.loginPage("/login").permitAll()				
 				.failureForwardUrl("/login?error=true")
@@ -41,17 +41,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.logoutSuccessUrl("/login?logout");
 	}
 
+	@Autowired
 	BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	@Bean
 	public BCryptPasswordEncoder passwordEncoder() {
-		bCryptPasswordEncoder = new BCryptPasswordEncoder(4);
+		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 		return bCryptPasswordEncoder;
 	}
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+		auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder);
 
 	}
 
