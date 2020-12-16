@@ -2,7 +2,7 @@ var detalleVentaJSON = "";
 
 function buscarArticulo() {
 
-	var url = 'http://localhost:8015/isisgav/articulo/';
+	var url = 'http://localhost:8015/isisgav/articulo';
 	if ($('#buscar_cod_art').val() != '') {
 		url = url + '/' + $('#buscar_cod_art').val();
 	}
