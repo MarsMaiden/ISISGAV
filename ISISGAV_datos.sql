@@ -111,3 +111,8 @@ VALUES (1, 2, 2, '2020-11-23', 2);
 INSERT INTO DETALLE_VENTA (ID_VENTA, ID_ARTICULO, CANT_VENTA) VALUES (2, 1, 1);
 INSERT INTO DETALLE_VENTA (ID_VENTA, ID_ARTICULO, CANT_VENTA) VALUES (2, 3, 2);
 INSERT INTO DETALLE_VENTA (ID_VENTA, ID_ARTICULO, CANT_VENTA) VALUES (2, 5, 1);
+
+UPDATE usuario SET pass = "$2y$12$DaQn4kkCurxILPo/HZqOQeqPHRs.ogtGHqWQB14JWBDVI2gqt6Fua" where id_usuario = "1";
+UPDATE usuario SET pass = "$2a$04$kWTm39qdQ778wD8PLOb42.my3.0eOykrEFA/M8j2LHXH/I6PHApyC" where id_usuario = "2";
+UPDATE usuario SET pass = "$2y$12$KR6tYtMhi1C/GYMNlYkOduBFkz22RBAA6dt1qD0H8XshaDX26w8fe" where id_usuario = "3";
+UPDATE usuario SET pass = "$2y$12$rUSCj.v0ZgJUsWNBbhF85.xhUL7Sle9SLbCOQ2XrdPSPxzSJeRKou" where id_usuario = "4";

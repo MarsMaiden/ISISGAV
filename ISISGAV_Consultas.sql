@@ -87,4 +87,4 @@ SELECT usuario.usuario, usuario.pass FROM db_isisgav.usuario WHERE usuario.usuar
 
 
 
-UPDATE usuario SET pass = "$2a$04$GpFe9s9Edexm.i/JZhJm2.7SjC4LULdwgmcdo9FXPdadFUAWgx3ni" where id_usuario = "4";
+UPDATE usuario SET pass = "$2y$12$/Hg8xsyQY41t5w348gjaxe4D9gxJkGM81PDEr4ofJPNiLLi6uDu0S " where id_usuario = "3";

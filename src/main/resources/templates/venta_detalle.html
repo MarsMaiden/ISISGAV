@@ -26,8 +26,11 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <body>
 	<nav class="navbar navbar-light bg-light">
-		<img src="../static/img/Dare Instruments.png" th:src="@{/img/Dare Instruments.png}" width="175" height="68" class="d-inline-block align-top" alt="">
-		<a class="navbar-brand" href="#">Navbar</a>
+		<a th:href="@{/home}"><img src="../static/img/Dare Instruments.png" th:src="@{/img/Dare Instruments.png}" width="175" height="68" class="d-inline-block align-top" alt=""></a>
+		<span th:if="${session.usuario != null}"> Bienvenido [[${#httpServletRequest.remoteUser}]] <span th:text="{session.usuario.usuario}"></span></span>
+		<form th:action="@{/logout}" method="POST">
+			<button type="submit" class="btn btn-primary mt-3">Salir</button>
+		</form>
 	</nav>
 
 	<aside class="">
